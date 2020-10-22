@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/workout-tracker",
+  process.env.MONGODB_URI || "mongodb://localhost/workout",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -18,6 +18,9 @@ mongoose.connect(
 );
 
 const connection = mongoose.connection;
+
+const workouts = require("./routes/api-routes");
+app.use(workouts);
 
 connection.on("connected", () => {
     console.log("Mongoose successfully connected.");

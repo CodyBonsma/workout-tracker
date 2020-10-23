@@ -4,19 +4,20 @@ const path = require("path");
 
 const db = require("../models")
 
-
+// render homepage 
 router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 })
-
+// render exercise page 
 router.get("/exercise", (req, res) => {
     res.sendFile(path.join(__dirname, '../public/exercise.html'));
 })
-
+// render stats page 
 router.get("/stats", (req, res) => {
     res.sendFile(path.join(__dirname, '../public/stats.html'));
 })
 
+// route to retrieve workouts
 router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
         .then((foundWorkouts) => {
@@ -33,6 +34,7 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
+// route to create a new workout 
 router.post("/api/workouts", (req, res) => {
     console.log(req.body)
     db.Workout.create(req.body).then((newWorkout) => {
@@ -80,6 +82,7 @@ router.put("/api/workouts/:id", (req, res) => {
     })
 })
 
+// route to get data to render stats page
 router.get("/api/workouts/range", (req,res) => {
     console.log(req.body);
 })

@@ -25,6 +25,9 @@ MIT
 ## Testing
 Load the deployed app through heroku and start logging your own workouts!
 
+## Back-End Technologies 
+JavaScript, Express, MongoDB, and Mongoose 
+
 ## Questions
 - [GitHub](https://github.com/CodyBonsma)
 - [Email](codybonsma@gmail.com)

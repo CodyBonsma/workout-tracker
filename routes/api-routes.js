@@ -85,7 +85,6 @@ router.put("/api/workouts/:id", (req, res) => {
 
 // route to get data to render stats page
 router.get("/api/workouts/range", (req, res) => {
-    // find all .limit(7) 
     console.log(req.body);
     db.Workout.find({}).then((allWorkouts) => {
         console.log(allWorkouts);

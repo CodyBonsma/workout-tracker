@@ -57,6 +57,7 @@ router.put("/api/workouts/:id", (req, res) => {
     let userId = req.params.id;
     console.log("hit the update route for working with ID");
     db.Workout.findByIdAndUpdate({ _id: userId }, {
+        // also could've used req.body for this section
         $push: {
             exercises: {
                 type: req.body.type,
@@ -83,9 +84,21 @@ router.put("/api/workouts/:id", (req, res) => {
 })
 
 // route to get data to render stats page
-router.get("/api/workouts/range", (req,res) => {
+router.get("/api/workouts/range", (req, res) => {
     // find all .limit(7) 
     console.log(req.body);
+    db.Workout.find({}).then((allWorkouts) => {
+        console.log(allWorkouts);
+        console.log("Successfully reigned in all workouts betch");
+        res.json(allWorkouts);
+    }).catch((err) => {
+        console.log(err);
+        res.json({
+            error: true,
+            data: null,
+            message: "failed to load all workout data"
+        });
+    })
 })
 
 module.exports = router;
